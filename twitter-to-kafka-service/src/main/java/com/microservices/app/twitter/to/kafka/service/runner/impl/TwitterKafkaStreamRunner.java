@@ -15,7 +15,7 @@ import java.util.Arrays;
 @Slf4j
 @Component
 @RequiredArgsConstructor
-@ConditionalOnExpression("${twitter-to-kafka-service.enable-mock-tweets} && not ${twitter-to-kafka-service.enable-v2-tweets}")
+@ConditionalOnExpression("${twitter-to-kafka-service.enable-v2-tweets} && not ${twitter-to-kafka-service.enable-mock-tweets}")
 public class TwitterKafkaStreamRunner implements StreamRunner {
 
     private final TwitterToKafkaServiceConfigData configData;
