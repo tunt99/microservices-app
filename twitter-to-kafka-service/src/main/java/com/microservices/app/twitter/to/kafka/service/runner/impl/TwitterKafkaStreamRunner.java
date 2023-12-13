@@ -6,16 +6,19 @@ import com.microservices.app.twitter.to.kafka.service.runner.StreamRunner;
 import jakarta.annotation.PreDestroy;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnExpression;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.stereotype.Component;
-import twitter4j.*;
+import twitter4j.FilterQuery;
+import twitter4j.TwitterException;
+import twitter4j.TwitterStream;
+import twitter4j.TwitterStreamFactory;
 
 import java.util.Arrays;
 
 @Slf4j
 @Component
 @RequiredArgsConstructor
-@ConditionalOnExpression("${twitter-to-kafka-service.enable-v2-tweets} && not ${twitter-to-kafka-service.enable-mock-tweets}")
+@ConditionalOnProperty(name = "twitter-to-kafka-service.enable-mock-tweets", havingValue = "false", matchIfMissing = true)
 public class TwitterKafkaStreamRunner implements StreamRunner {
 
     private final TwitterToKafkaServiceConfigData configData;
