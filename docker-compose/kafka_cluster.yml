@@ -1,7 +1,7 @@
 version: '3.7'
 services:
   zookeeper:
-    image: confluentinc/cp-zookeeper:${KAFKA_VERSION:-latest}
+    image: confluentinc/cp-zookeeper:latest
     hostname: zookeeper
     ports:
       - "2181:2181"
@@ -15,7 +15,7 @@ services:
     networks:
       - ${GLOBAL_NETWORK:-kafka}
   schema-registry:
-    image: confluentinc/cp-schema-registry:${KAFKA_VERSION}
+    image: confluentinc/cp-schema-registry:latest
     hostname: schema-registry
     depends_on:
       - zookeeper
@@ -26,6 +26,7 @@ services:
       - "8081:8081"
     environment:
       SCHEMA_REGISTRY_HOST_NAME: schema-registry
+      SCHEMA_REGISTRY_KAFKASTORE_BOOTSTRAP_SERVERS: 'PLAINTEXT://kafka-broker-1:9092,PLAINTEXT://kafka-broker-2:9092,PLAINTEXT://kafka-broker-3:9092'
       SCHEMA_REGISTRY_KAFKASTORE_CONNECTION_URL: 'zookeeper:2181'
       SCHEMA_REGISTRY_LISTENERS: http://schema-registry:8081
       SCHEMA_REGISTRY_DEBUG: 'true'
