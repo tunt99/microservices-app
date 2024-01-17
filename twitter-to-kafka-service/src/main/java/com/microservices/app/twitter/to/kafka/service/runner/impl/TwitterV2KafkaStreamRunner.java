@@ -1,6 +1,6 @@
 package com.microservices.app.twitter.to.kafka.service.runner.impl;
 
-import com.microservices.app.config.data.TwitterToKafkaServiceConfigData;
+import com.microservices.app.config.TwitterToKafkaServiceConfigData;
 import com.microservices.app.twitter.to.kafka.service.runner.StreamRunner;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

@@ -4,11 +4,12 @@
 	<modelVersion>4.0.0</modelVersion>
 	<modules>
 		<module>twitter-to-kafka-service</module>
-		<module>app-config</module>
+		<module>app-config-data</module>
 		<module>kafka</module>
 		<module>kafka/kafka-model</module>
 		<module>kafka/kafka-admin</module>
 		<module>kafka/kafka-producer</module>
+		<module>common-config</module>
         <module>config-server</module>
     </modules>
 	<parent>
@@ -54,7 +55,12 @@
 		<dependencies>
 			<dependency>
 				<groupId>com.microservices.app</groupId>
-				<artifactId>app-config</artifactId>
+				<artifactId>app-config-data</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.microservices.app</groupId>
+				<artifactId>common-config</artifactId>
 				<version>${project.version}</version>
 			</dependency>
 			<dependency>

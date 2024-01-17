@@ -1,6 +1,6 @@
 package com.microservices.app.kafka.admin.config;
 
-import com.microservices.app.config.data.KafkaConfigData;
+import com.microservices.app.config.KafkaConfigData;
 import lombok.RequiredArgsConstructor;
 import org.apache.kafka.clients.CommonClientConfigs;
 import org.apache.kafka.clients.admin.AdminClient;

@@ -1,4 +1,4 @@
-package com.microservices.app.config.data;
+package com.microservices.app.config;
 
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;

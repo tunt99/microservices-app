@@ -1,6 +1,6 @@
-package com.microservices.app.config;
+package com.microservices.app.common.config;
 
-import com.microservices.app.config.data.RetryConfigData;
+import com.microservices.app.config.RetryConfigData;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

@@ -1,4 +1,4 @@
-package com.microservices.app.config;
+package com.microservices.app.common.config;
 
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;

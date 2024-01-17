@@ -14,7 +14,7 @@
     <dependencies>
         <dependency>
             <groupId>com.microservices.app</groupId>
-            <artifactId>app-config</artifactId>
+            <artifactId>app-config-data</artifactId>
         </dependency>
         <dependency>
             <groupId>com.microservices.app</groupId>

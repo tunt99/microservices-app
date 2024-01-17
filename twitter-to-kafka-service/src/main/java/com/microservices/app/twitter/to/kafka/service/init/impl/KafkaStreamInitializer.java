@@ -1,6 +1,6 @@
 package com.microservices.app.twitter.to.kafka.service.init.impl;
 
-import com.microservices.app.config.data.KafkaConfigData;
+import com.microservices.app.config.KafkaConfigData;
 import com.microservices.app.kafka.admin.client.KafkaAdminClient;
 import com.microservices.app.twitter.to.kafka.service.init.StreamInitializer;
 import lombok.RequiredArgsConstructor;
