@@ -1,4 +1,4 @@
-package com.microservices.app.config;
+package com.microservices.app.main;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

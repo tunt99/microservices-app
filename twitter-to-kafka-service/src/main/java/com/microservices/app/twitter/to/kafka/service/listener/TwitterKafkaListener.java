@@ -1,7 +1,7 @@
 package com.microservices.app.twitter.to.kafka.service.listener;
 
-import com.microservices.app.common.config.UtilConfig;
-import com.microservices.app.config.KafkaConfigData;
+import com.microservices.app.config.UtilConfig;
+import com.microservices.app.config.data.KafkaConfigData;
 import com.microservices.app.kafka.avro.model.TwitterCustomModel;
 import com.microservices.app.service.KafkaProducer;
 import com.microservices.app.twitter.to.kafka.service.transformer.TwitterStatusToAvroTransformer;

@@ -1,5 +1,7 @@
 package com.microservices.app.config;
 
+import com.microservices.app.config.data.KafkaConfigData;
+import com.microservices.app.config.data.KafkaProducerConfigData;
 import lombok.RequiredArgsConstructor;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.clients.producer.ProducerConfig;
