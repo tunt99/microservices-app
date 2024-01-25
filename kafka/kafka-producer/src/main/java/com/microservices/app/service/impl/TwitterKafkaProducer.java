@@ -39,13 +39,13 @@ public class TwitterKafkaProducer implements KafkaProducer {
         kafkaResultFuture.addCallback(new ListenableFutureCallback<>() {
             @Override
             public void onFailure(Throwable throwable) {
-                log.error("Error while sending message {} to topic {}", message.toString(), topicName, throwable);
+                log.info("Error while sending message {} to topic {}", message.toString(), topicName, throwable);
             }
 
             @Override
             public void onSuccess(SendResult<String, Object> result) {
                     RecordMetadata metadata = result.getRecordMetadata();
-                    log.debug("Received new metadata. Topic: {}; Partition {}; Offset {}; Timestamp {}, at time {}",
+                    log.info("Received new metadata. Topic: {}; Partition {}; Offset {}; Timestamp {}, at time {}",
                             metadata.topic(),
                             metadata.partition(),
                             metadata.offset(),
