@@ -1,4 +1,10 @@
 /target/
+
+#Modules
+/elastic/elastic-config/target/
+/elastic/elastic-index-client/target/
+/elastic/elastic-model/target/
+
 !.mvn/wrapper/maven-wrapper.jar
 
 ### STS ###
