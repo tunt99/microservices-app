@@ -17,12 +17,4 @@ public class UtilConfig {
         return mapper;
     }
 
-    public String parseString(Object object) {
-        try {
-            return objectMapper().writeValueAsString(object);
-        } catch (Exception ex) {
-            log.error("Parse to string ex {}", ex.getMessage());
-            return null;
-        }
-    }
 }

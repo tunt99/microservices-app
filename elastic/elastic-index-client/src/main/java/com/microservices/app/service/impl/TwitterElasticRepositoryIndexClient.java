@@ -6,14 +6,12 @@ import com.microservices.app.service.ElasticIndexClient;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
-import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Slf4j
-@Primary
 @Service
 @RequiredArgsConstructor
 @ConditionalOnProperty(name = "elastic-config.is-repository", havingValue = "true", matchIfMissing = true)

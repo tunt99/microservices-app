@@ -10,6 +10,7 @@ import org.springframework.context.annotation.Configuration;
 public class ElasticConfigData {
     private String indexName;
     private String connectionUrl;
-    private int connectionTimeout;
-    private int socketTimeout;
+    private Long connectTimeoutMs;
+    private Long socketTimeoutMs;
+    private Boolean isRepository;
 }
