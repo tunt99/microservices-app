@@ -14,6 +14,7 @@
 		<module>kafka/kafka-consumer</module>
 		<module>kafka-to-elastic-service</module>
         <module>elastic</module>
+		<module>elastic-query-service</module>
 	</modules>
 	<parent>
 		<groupId>org.springframework.boot</groupId>

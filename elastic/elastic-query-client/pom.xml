@@ -18,10 +18,6 @@
         </dependency>
         <dependency>
             <groupId>com.microservices.app</groupId>
-            <artifactId>elastic-config</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.microservices.app</groupId>
             <artifactId>elastic-model</artifactId>
         </dependency>
         <dependency>

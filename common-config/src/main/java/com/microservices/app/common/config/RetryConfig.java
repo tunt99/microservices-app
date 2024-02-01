@@ -14,19 +14,33 @@ public class RetryConfig {
 
     private final RetryConfigData retryConfigData;
 
+    private static final long DEFAULT_INITIAL_INTERVAL_MS = 1000;
+    private static final long DEFAULT_MAX_INTERVAL_MS = 10000;
+    private static final double DEFAULT_MULTIPLIER = 2.0;
+    private static final int DEFAULT_MAX_ATTEMPTS = 3;
+
     @Bean
     public RetryTemplate retryTemplate() {
         RetryTemplate retryTemplate = new RetryTemplate();
 
+        long initialIntervalMs = retryConfigData.getInitialIntervalMs() != null ?
+                retryConfigData.getInitialIntervalMs() : DEFAULT_INITIAL_INTERVAL_MS;
+        long maxIntervalMs = retryConfigData.getMaxIntervalMs() != null ?
+                retryConfigData.getMaxIntervalMs() : DEFAULT_MAX_INTERVAL_MS;
+        double multiplier = retryConfigData.getMultiplier() != null ?
+                retryConfigData.getMultiplier() : DEFAULT_MULTIPLIER;
+        int maxAttempts = retryConfigData.getMaxAttempts() != null ?
+                retryConfigData.getMaxAttempts() : DEFAULT_MAX_ATTEMPTS;
+
         ExponentialBackOffPolicy exponentialBackOffPolicy = new ExponentialBackOffPolicy();
-        exponentialBackOffPolicy.setInitialInterval(retryConfigData.getInitialIntervalMs());
-        exponentialBackOffPolicy.setMaxInterval(retryConfigData.getMaxIntervalMs());
-        exponentialBackOffPolicy.setMultiplier(retryConfigData.getMultiplier());
+        exponentialBackOffPolicy.setInitialInterval(initialIntervalMs);
+        exponentialBackOffPolicy.setMaxInterval(maxIntervalMs);
+        exponentialBackOffPolicy.setMultiplier(multiplier);
 
         retryTemplate.setBackOffPolicy(exponentialBackOffPolicy);
 
         SimpleRetryPolicy simpleRetryPolicy = new SimpleRetryPolicy();
-        simpleRetryPolicy.setMaxAttempts(retryConfigData.getMaxAttempts());
+        simpleRetryPolicy.setMaxAttempts(maxAttempts);
 
         retryTemplate.setRetryPolicy(simpleRetryPolicy);
 
