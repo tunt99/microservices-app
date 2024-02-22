@@ -15,6 +15,7 @@
 		<module>kafka-to-elastic-service</module>
         <module>elastic</module>
 		<module>elastic-query-service</module>
+		<module>elastic-query-web-client</module>
 	</modules>
 	<parent>
 		<groupId>org.springframework.boot</groupId>
@@ -50,6 +51,7 @@
 		<elastic.version>7.17.14</elastic.version>
 		<jackson-datatype-jsr310.version>2.16.0</jackson-datatype-jsr310.version>
 		<springdoc-openapi-ui.version>2.2.0</springdoc-openapi-ui.version>
+		<thymeleaf-extras-springsecurity6.version>3.1.2.RELEASE</thymeleaf-extras-springsecurity6.version>
 
 	</properties>
 
@@ -256,6 +258,17 @@
 				<version>${springdoc-openapi-ui.version}</version>
 			</dependency>
 
+			<dependency>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-starter-thymeleaf</artifactId>
+				<version>${spring-boot.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.thymeleaf.extras</groupId>
+				<artifactId>thymeleaf-extras-springsecurity6</artifactId>
+				<version>${thymeleaf-extras-springsecurity6.version}</version>
+			</dependency>
 
 			<dependency>
 				<groupId>io.confluent</groupId>

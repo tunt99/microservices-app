@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      th:replace="~{layout/main::layout('Twitter Search Engine', ~{::section}, ~{}, ~{})}"
+      lang="en">
+<head>
+</head>
+<body>
+<section class="section">
+    <div class="container float-left">
+        <div sec:authorize="!isAuthenticated()">
+            <p>Please <a th:href="@{/home}">login</a> to start searching</p>
+        </div>
+
+        <div sec:authorize="isAuthenticated()">
+            <p>Hello <span sec:authentication="name"></span><a th:href="@{/home}"> Let's get start searching!</a></p>
+        </div>
+    </div>
+</section>
+</body>
+</html>
+
