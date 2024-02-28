@@ -1,0 +1,21 @@
+version: '3.7'
+services:
+  keycloak-authorization-server:
+    image: quay.io/keycloak/keycloak:${KEYCLOAK_VERSION}
+    hostname: keycloak-server
+    command: [ "start-dev" ]
+    ports:
+      - "9990:8080"
+      - "9991:8443"
+    environment:
+      - "KEYCLOAK_ADMIN=admin"
+      - "KEYCLOAK_ADMIN_PASSWORD=admin"
+      - "KEYCLOAK_USER=admin"
+      - "KEYCLOAK_PASSWORD=admin"
+      - "JAVA_OPTS=-Djboss.http.port=8080"
+      - "DB_VENDOR=POSTGRES"
+      - "DB_ADDR=host.docker.internal"
+      - "DB_DATABASE=keycloak"
+      - "DB_USER=keycloak"
+      - "DB_SCHEMA=keycloak"
+      - "DB_PASSWORD=123456"
