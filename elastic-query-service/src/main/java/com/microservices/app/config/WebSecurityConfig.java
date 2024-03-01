@@ -1,7 +1,9 @@
 package com.microservices.app.config;
 
+import com.microservices.app.security.QueryServicePermissionEvaluator;
 import com.microservices.app.security.TwitterQueryUserDetailsService;
 import com.microservices.app.security.TwitterQueryUserJwtConverter;
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
@@ -9,6 +11,8 @@ import org.springframework.boot.autoconfigure.security.oauth2.resource.OAuth2Res
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.convert.converter.Converter;
+import org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler;
+import org.springframework.security.access.expression.method.MethodSecurityExpressionHandler;
 import org.springframework.security.authentication.AbstractAuthenticationToken;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
@@ -71,5 +75,13 @@ public class WebSecurityConfig {
     @Bean
     Converter<Jwt, ? extends AbstractAuthenticationToken> twitterQueryUserJwtConverter() {
         return new TwitterQueryUserJwtConverter(twitterQueryUserDetailsService);
+    }
+
+    @Bean
+    public MethodSecurityExpressionHandler createExpressionHandler(HttpServletRequest request) {
+        DefaultMethodSecurityExpressionHandler expressionHandler =
+                new DefaultMethodSecurityExpressionHandler();
+        expressionHandler.setPermissionEvaluator(new QueryServicePermissionEvaluator(request));
+        return expressionHandler;
     }
 }

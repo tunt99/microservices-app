@@ -52,6 +52,8 @@
 		<jackson-datatype-jsr310.version>2.16.0</jackson-datatype-jsr310.version>
 		<springdoc-openapi-ui.version>2.2.0</springdoc-openapi-ui.version>
 		<thymeleaf-extras-springsecurity6.version>3.1.2.RELEASE</thymeleaf-extras-springsecurity6.version>
+		<postgresql.version>42.7.1</postgresql.version>
+
 
 	</properties>
 
@@ -274,6 +276,18 @@
 				<groupId>org.thymeleaf.extras</groupId>
 				<artifactId>thymeleaf-extras-springsecurity6</artifactId>
 				<version>${thymeleaf-extras-springsecurity6.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-starter-data-jpa</artifactId>
+				<version>${spring-boot.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.postgresql</groupId>
+				<artifactId>postgresql</artifactId>
+				<version>${postgresql.version}</version>
 			</dependency>
 
 			<dependency>

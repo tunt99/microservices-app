@@ -1,12 +1,14 @@
 package com.microservices.app.security;
 
 import com.microservices.app.constant.Constants;
+import com.microservices.app.constant.PermissionType;
 import lombok.Builder;
 import lombok.Getter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
+import java.util.Map;
 
 
 @Builder
@@ -16,6 +18,8 @@ public class TwitterQueryUser implements UserDetails {
     private String username;
 
     private Collection<? extends GrantedAuthority> authorities;
+
+    private Map<String, PermissionType> permissions;
 
     public void setAuthorities(Collection<? extends GrantedAuthority> authorities) {
         this.authorities = authorities;
