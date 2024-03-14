@@ -1,13 +1,6 @@
 /target/
-
-#Modules
-/elastic/elastic-config/target/
-/elastic/elastic-index-client/target/
-/elastic/elastic-model/target/
-/elastic/elastic-query-client/target/
 !.mvn/wrapper/maven-wrapper.jar
 
-/kafka-streaming-state/
 ### STS ###
 .apt_generated
 .classpath
@@ -23,6 +16,7 @@
 *.iws
 *.iml
 *.ipr
+*.log
 
 ### NetBeans ###
 /nbproject/private/

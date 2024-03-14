@@ -1,0 +1,16 @@
+spring:
+  application:
+    name: kafka-streams-service
+  profiles:
+    active: kafka_streams
+  cloud:
+    config:
+      name: kafka-streams-service,config-client
+      uri: http://localhost:8888
+      username: spring_cloud_user
+      password: ENC(paCBdoZDi6nRfPCJnzp/eri7Uj2H7/jUefezYv2TQcw=)
+jasypt:
+  encryptor:
+    password: Demo_Pwd!2024
+    algorithm: PBEWithMD5AndDES
+    iv-generator-classname: org.jasypt.iv.NoIvGenerator

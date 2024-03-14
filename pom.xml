@@ -16,6 +16,7 @@
         <module>elastic</module>
 		<module>elastic-query-service</module>
 		<module>elastic-query-web-client</module>
+        <module>kafka-streams-service</module>
 	</modules>
 	<parent>
 		<groupId>org.springframework.boot</groupId>
@@ -50,9 +51,12 @@
 		<jasypt-spring-boot-starter.version>3.0.4</jasypt-spring-boot-starter.version>
 		<elastic.version>7.17.14</elastic.version>
 		<jackson-datatype-jsr310.version>2.16.0</jackson-datatype-jsr310.version>
-		<springdoc-openapi-ui.version>2.2.0</springdoc-openapi-ui.version>
+		<springdoc-openapi-starter-webmvc-ui.version>2.2.0</springdoc-openapi-starter-webmvc-ui.version>
+		<springdoc-openapi-ui.version>1.7.0</springdoc-openapi-ui.version>
 		<thymeleaf-extras-springsecurity6.version>3.1.2.RELEASE</thymeleaf-extras-springsecurity6.version>
 		<postgresql.version>42.7.1</postgresql.version>
+		<kafka-streams.version>3.6.1</kafka-streams.version>
+		<kafka-streams-avro-serde.version>7.5.3</kafka-streams-avro-serde.version>
 
 
 	</properties>
@@ -263,7 +267,7 @@
 			<dependency>
 				<groupId>org.springdoc</groupId>
 				<artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
-				<version>${springdoc-openapi-ui.version}</version>
+				<version>${springdoc-openapi-starter-webmvc-ui.version}</version>
 			</dependency>
 
 			<dependency>
@@ -288,6 +292,24 @@
 				<groupId>org.postgresql</groupId>
 				<artifactId>postgresql</artifactId>
 				<version>${postgresql.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.apache.kafka</groupId>
+				<artifactId>kafka-streams</artifactId>
+				<version>${kafka-streams.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>io.confluent</groupId>
+				<artifactId>kafka-streams-avro-serde</artifactId>
+				<version>${kafka-streams-avro-serde.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.springdoc</groupId>
+				<artifactId>springdoc-openapi-ui</artifactId>
+				<version>${springdoc-openapi-ui.version}</version>
 			</dependency>
 
 			<dependency>
