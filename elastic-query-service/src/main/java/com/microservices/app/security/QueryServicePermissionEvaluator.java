@@ -1,6 +1,7 @@
 package com.microservices.app.security;
 
 import com.microservices.app.constant.PermissionType;
+import com.microservices.app.model.ElasticQueryServiceAnalyticsResponseModel;
 import com.microservices.app.model.ElasticQueryServiceRequestModel;
 import com.microservices.app.model.ElasticQueryServiceResponseModel;
 import jakarta.servlet.http.HttpServletRequest;
@@ -37,10 +38,10 @@ public class QueryServicePermissionEvaluator implements PermissionEvaluator {
             if (targetDomain == null) {
                 return true;
             }
-            List<ElasticQueryServiceResponseModel> responseBody =
-                    ((ResponseEntity<List<ElasticQueryServiceResponseModel>>) targetDomain).getBody();
+            ElasticQueryServiceAnalyticsResponseModel responseBody =
+                    ((ResponseEntity<ElasticQueryServiceAnalyticsResponseModel>) targetDomain).getBody();
             Objects.requireNonNull(responseBody);
-            return postAuthorize(authentication, responseBody, permission);
+            return postAuthorize(authentication, responseBody.getData(), permission);
         }
         return false;
     }
