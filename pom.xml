@@ -17,7 +17,9 @@
 		<module>elastic-query-service</module>
 		<module>elastic-query-web-client</module>
         <module>kafka-streams-service</module>
-	</modules>
+		<module>analytics-service</module>
+        <module>auth-service</module>
+    </modules>
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
@@ -57,7 +59,6 @@
 		<postgresql.version>42.7.1</postgresql.version>
 		<kafka-streams.version>3.6.1</kafka-streams.version>
 		<kafka-streams-avro-serde.version>7.5.3</kafka-streams-avro-serde.version>
-
 
 	</properties>
 
