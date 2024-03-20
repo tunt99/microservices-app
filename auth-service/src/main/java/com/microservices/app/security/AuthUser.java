@@ -10,7 +10,7 @@ import java.util.Collection;
 
 @Builder
 @Getter
-public class KafkaStreamsUser implements UserDetails {
+public class AuthUser implements UserDetails {
 
     private String username;
 

@@ -73,6 +73,11 @@
 		<dependencies>
 			<dependency>
 				<groupId>com.microservices.app</groupId>
+				<artifactId>auth-service</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.microservices.app</groupId>
 				<artifactId>app-config-data</artifactId>
 				<version>${project.version}</version>
 			</dependency>

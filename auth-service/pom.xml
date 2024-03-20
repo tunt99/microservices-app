@@ -9,37 +9,12 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>kafka-streams-service</artifactId>
-
+    <artifactId>auth-service</artifactId>
 
     <dependencies>
         <dependency>
             <groupId>com.microservices.app</groupId>
-            <artifactId>auth-service</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.microservices.app</groupId>
             <artifactId>app-config-data</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.microservices.app</groupId>
-            <artifactId>kafka-model</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.microservices.app</groupId>
-            <artifactId>kafka-admin</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.kafka</groupId>
-            <artifactId>kafka-streams</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.kafka</groupId>
-            <artifactId>kafka-clients</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>io.confluent</groupId>
-            <artifactId>kafka-streams-avro-serde</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -64,6 +39,10 @@
         <dependency>
             <groupId>org.springdoc</groupId>
             <artifactId>springdoc-openapi-ui</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-oauth2-resource-server</artifactId>
         </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>

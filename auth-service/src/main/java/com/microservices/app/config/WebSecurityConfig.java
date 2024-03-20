@@ -1,7 +1,7 @@
 package com.microservices.app.config;
 
-import com.microservices.app.security.KafkaStreamsUserDetailsService;
-import com.microservices.app.security.KafkaStreamsUserJwtConverter;
+import com.microservices.app.security.AuthUserDetailsService;
+import com.microservices.app.security.UserJwtConverter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
@@ -28,16 +28,15 @@ import org.springframework.security.web.SecurityFilterChain;
 @EnableMethodSecurity
 public class WebSecurityConfig {
 
-    private final KafkaStreamsUserDetailsService kafkaStreamsUserDetailsService;
-
+    private final AuthUserDetailsService authUserDetailsService;
     private final OAuth2ResourceServerProperties oAuth2ResourceServerProperties;
 
     @Value("${security.paths-to-ignore}")
     private String[] pathsToIgnore;
 
     @Bean
-    Converter<Jwt, ? extends AbstractAuthenticationToken> kafkaStreamsUserJwtAuthConverter() {
-        return new KafkaStreamsUserJwtConverter(kafkaStreamsUserDetailsService);
+    Converter<Jwt, ? extends AbstractAuthenticationToken> userJwtAuthConverter() {
+        return new UserJwtConverter(authUserDetailsService);
     }
 
     @Bean
@@ -50,7 +49,7 @@ public class WebSecurityConfig {
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .oauth2ResourceServer((oauth2) ->
                         oauth2.jwt(jwtConfigurer ->
-                                jwtConfigurer.jwtAuthenticationConverter(kafkaStreamsUserJwtAuthConverter())));
+                                jwtConfigurer.jwtAuthenticationConverter(userJwtAuthConverter())));
         return http.build();
     }
 
@@ -60,7 +59,7 @@ public class WebSecurityConfig {
     }
 
     @Bean
-    JwtDecoder jwtDecoder(@Qualifier("kafka-streams-service-audience-validator")
+    JwtDecoder jwtDecoder(@Qualifier("auth-service-audience-validator")
                                   OAuth2TokenValidator<Jwt> audienceValidator) {
         NimbusJwtDecoder jwtDecoder = JwtDecoders.fromOidcIssuerLocation(
                 oAuth2ResourceServerProperties.getJwt().getIssuerUri());

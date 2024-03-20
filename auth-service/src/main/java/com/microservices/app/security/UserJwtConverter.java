@@ -12,7 +12,7 @@ import org.springframework.security.oauth2.jwt.Jwt;
 import java.util.*;
 import java.util.stream.Collectors;
 
-public class KafkaStreamsUserJwtConverter implements Converter<Jwt, AbstractAuthenticationToken> {
+public class UserJwtConverter implements Converter<Jwt, AbstractAuthenticationToken> {
     private static final String REALM_ACCESS_CLAIM = "realm_access";
     private static final String ROLES_CLAIM = "roles";
     private static final String SCOPE_CLAIM = "scope";
@@ -21,19 +21,19 @@ public class KafkaStreamsUserJwtConverter implements Converter<Jwt, AbstractAuth
     private static final String DEFAULT_SCOPE_PREFIX = "SCOPE_";
     private static final String SCOPE_SEPARATOR = " ";
 
-    private final KafkaStreamsUserDetailsService kafkaStreamsUserDetailsService;
+    private final AuthUserDetailsService authUserDetailsService;
 
-    public KafkaStreamsUserJwtConverter(KafkaStreamsUserDetailsService kafkaStreamsUserDetailsService) {
-        this.kafkaStreamsUserDetailsService = kafkaStreamsUserDetailsService;
+    public UserJwtConverter(AuthUserDetailsService authUserDetailsService) {
+        this.authUserDetailsService = authUserDetailsService;
     }
 
     @Override
     public AbstractAuthenticationToken convert(Jwt jwt) {
         Collection<GrantedAuthority> authoritiesFromJwt = getAuthoritiesFromJwt(jwt);
         return Optional.ofNullable(
-                kafkaStreamsUserDetailsService.loadUserByUsername(jwt.getClaimAsString(USERNAME_CLAIM)))
+                authUserDetailsService.loadUserByUsername(jwt.getClaimAsString(USERNAME_CLAIM)))
                 .map(userDetails -> {
-                    ((KafkaStreamsUser) userDetails).setAuthorities(authoritiesFromJwt);
+                    ((AuthUser) userDetails).setAuthorities(authoritiesFromJwt);
                     return new UsernamePasswordAuthenticationToken(userDetails, Constants.NA, authoritiesFromJwt);
                 })
                 .orElseThrow(() -> new BadCredentialsException("User could not be found!"));

@@ -12,6 +12,7 @@ import java.util.List;
 public class ElasticQueryWebClientConfigData {
     private WebClient webClient;
     private Query queryByText;
+    private String customAudience;
 
     @Data
     public static class WebClient {
