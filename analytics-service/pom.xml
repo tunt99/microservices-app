@@ -14,6 +14,10 @@
     <dependencies>
         <dependency>
             <groupId>com.microservices.app</groupId>
+            <artifactId>auth-service</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.microservices.app</groupId>
             <artifactId>app-config-data</artifactId>
         </dependency>
         <dependency>

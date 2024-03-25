@@ -9,6 +9,5 @@ import org.springframework.context.annotation.Configuration;
 @ConfigurationProperties(prefix = "analytics-service")
 public class AnalyticsServiceConfigData {
     private String version;
-    private String customAudience;
 }
 

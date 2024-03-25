@@ -4,7 +4,6 @@ import com.microservices.app.controller.ElasticDocumentApi;
 import com.microservices.app.model.ElasticQueryServiceAnalyticsResponseModel;
 import com.microservices.app.model.ElasticQueryServiceRequestModel;
 import com.microservices.app.model.ElasticQueryServiceResponseModel;
-import com.microservices.app.security.TwitterQueryUser;
 import com.microservices.app.service.ElasticQueryService;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotEmpty;
@@ -12,7 +11,6 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.oauth2.client.OAuth2AuthorizedClient;
 import org.springframework.security.oauth2.client.annotation.RegisteredOAuth2AuthorizedClient;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -47,11 +45,7 @@ public class ElasticDocumentController implements ElasticDocumentApi {
 
     public ResponseEntity<ElasticQueryServiceAnalyticsResponseModel>
     getDocumentByText(@RequestBody @Valid ElasticQueryServiceRequestModel elasticQueryServiceRequestModel,
-                      @AuthenticationPrincipal TwitterQueryUser principal,
                       @RegisteredOAuth2AuthorizedClient("keycloak") OAuth2AuthorizedClient oAuth2AuthorizedClient) {
-
-        log.info("User {} querying documents for text {}", principal.getUsername(),
-                elasticQueryServiceRequestModel.getText());
 
         ElasticQueryServiceAnalyticsResponseModel response =
                 elasticQueryService.getDocumentByText(elasticQueryServiceRequestModel.getText(),

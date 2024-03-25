@@ -1,28 +1,29 @@
 package com.microservices.app.security;
 
-import com.microservices.app.config.AuthServiceConfigData;
-import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.oauth2.core.OAuth2Error;
 import org.springframework.security.oauth2.core.OAuth2TokenValidator;
 import org.springframework.security.oauth2.core.OAuth2TokenValidatorResult;
 import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.stereotype.Component;
 
+@Slf4j
 @Component
-@RequiredArgsConstructor
 @Qualifier(value = "auth-service-audience-validator")
 public class AudienceValidator implements OAuth2TokenValidator<Jwt> {
 
-    private final AuthServiceConfigData authServiceConfigData;
+    @Value("${auth.data.custom-audience}")
+    private String customAudience;
 
     public OAuth2TokenValidatorResult validate(Jwt jwt) {
-        if (jwt.getAudience().contains(authServiceConfigData.getCustomAudience())) {
+        if (jwt.getAudience().contains(customAudience)) {
             return OAuth2TokenValidatorResult.success();
         } else {
             OAuth2Error audienceError =
                     new OAuth2Error("invalid_token", "The required audience " +
-                            authServiceConfigData.getCustomAudience() + " is missing!",
+                            customAudience + " is missing!",
                             null);
             return OAuth2TokenValidatorResult.failure(audienceError);
         }

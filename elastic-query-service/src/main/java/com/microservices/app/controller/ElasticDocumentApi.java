@@ -3,7 +3,6 @@ package com.microservices.app.controller;
 import com.microservices.app.model.ElasticQueryServiceAnalyticsResponseModel;
 import com.microservices.app.model.ElasticQueryServiceRequestModel;
 import com.microservices.app.model.ElasticQueryServiceResponseModel;
-import com.microservices.app.security.TwitterQueryUser;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -61,6 +60,5 @@ public interface ElasticDocumentApi {
     @PostMapping("/get-document-by-text")
     ResponseEntity<ElasticQueryServiceAnalyticsResponseModel>
     getDocumentByText(@RequestBody @Valid ElasticQueryServiceRequestModel elasticQueryServiceRequestModel,
-                      TwitterQueryUser principal,
                       OAuth2AuthorizedClient oAuth2AuthorizedClient);
 }

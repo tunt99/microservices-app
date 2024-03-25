@@ -37,7 +37,7 @@ public class AnalyticsController {
             @ApiResponse(responseCode = "400", description = "Not found."),
             @ApiResponse(responseCode = "500", description = "Unexpected error.")})
     public @ResponseBody
-    ResponseEntity<AnalyticsResponseModel> getWordCountByWord(@PathVariable @NotEmpty String word) {
+    ResponseEntity<AnalyticsResponseModel> getWordCountByWord(@PathVariable("word") @NotEmpty String word) {
         Optional<AnalyticsResponseModel> response = analyticsService.getWordAnalytics(word);
         if (response.isPresent()) {
             log.info("Analytics data returned with id {}", response.get().getId());

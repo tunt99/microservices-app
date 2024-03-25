@@ -9,5 +9,4 @@ import org.springframework.context.annotation.Configuration;
 @ConfigurationProperties(prefix = "kafka-streams-service")
 public class KafkaStreamsServiceConfigData {
 	private String version;
-	private String customAudience;
 }
