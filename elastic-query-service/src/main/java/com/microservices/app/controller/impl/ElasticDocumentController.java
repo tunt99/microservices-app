@@ -10,13 +10,9 @@ import jakarta.validation.constraints.NotEmpty;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.oauth2.client.OAuth2AuthorizedClient;
-import org.springframework.security.oauth2.client.annotation.RegisteredOAuth2AuthorizedClient;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -45,11 +41,11 @@ public class ElasticDocumentController implements ElasticDocumentApi {
 
     public ResponseEntity<ElasticQueryServiceAnalyticsResponseModel>
     getDocumentByText(@RequestBody @Valid ElasticQueryServiceRequestModel elasticQueryServiceRequestModel,
-                      @RegisteredOAuth2AuthorizedClient("keycloak") OAuth2AuthorizedClient oAuth2AuthorizedClient) {
+                      @RequestHeader(HttpHeaders.AUTHORIZATION) String authorization) {
 
         ElasticQueryServiceAnalyticsResponseModel response =
                 elasticQueryService.getDocumentByText(elasticQueryServiceRequestModel.getText(),
-                        oAuth2AuthorizedClient.getAccessToken().getTokenValue());
+                        authorization);
         log.info("Elasticsearch returned {} of documents on port {}",
                 response.getData().size(), port);
         return ResponseEntity.ok(response);

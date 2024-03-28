@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Locale;
 import java.util.Optional;
 
 @Slf4j
@@ -38,7 +39,7 @@ public class AnalyticsController {
             @ApiResponse(responseCode = "500", description = "Unexpected error.")})
     public @ResponseBody
     ResponseEntity<AnalyticsResponseModel> getWordCountByWord(@PathVariable("word") @NotEmpty String word) {
-        Optional<AnalyticsResponseModel> response = analyticsService.getWordAnalytics(word);
+        Optional<AnalyticsResponseModel> response = analyticsService.getWordAnalytics(word.toLowerCase(Locale.ROOT));
         if (response.isPresent()) {
             log.info("Analytics data returned with id {}", response.get().getId());
             return ResponseEntity.ok(response.get());
