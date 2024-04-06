@@ -9,8 +9,15 @@ spring:
       uri: http://localhost:8888
       username: spring_cloud_user
       password: ENC(paCBdoZDi6nRfPCJnzp/eri7Uj2H7/jUefezYv2TQcw=)
+  config:
+    import:
 jasypt:
   encryptor:
     password: Demo_Pwd!2024
     algorithm: PBEWithMD5AndDES
     iv-generator-classname: org.jasypt.iv.NoIvGenerator
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://discovery-service-1:8761/eureka/

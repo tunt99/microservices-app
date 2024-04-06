@@ -44,8 +44,7 @@ public class QueryController {
         List<ElasticQueryWebClientResponseModel> responseModels = elasticQueryWebClient.getDataByText(requestModel);
         model.addAttribute("data", responseModels);
         model.addAttribute("searchText", requestModel.getText());
-        model.addAttribute("item",
-                ElasticQueryWebClientRequestModel.builder().build());
+        model.addAttribute("item", ElasticQueryWebClientRequestModel.builder().build());
         return "home";
     }
 

@@ -1,16 +1,16 @@
 package com.microservices.app.service;
 
 
-import com.microservices.app.model.ElasticQueryServiceAnalyticsResponseModel;
-import com.microservices.app.model.ElasticQueryServiceResponseModel;
+import com.microservices.app.model.ElasticQueryResponseModel;
+import com.microservices.app.model.QueryAnalyticsResponseModel;
 
 import java.util.List;
 
 public interface ElasticQueryService {
 
-    ElasticQueryServiceResponseModel getDocumentById(String id);
+    ElasticQueryResponseModel getDocumentById(String id);
 
-    ElasticQueryServiceAnalyticsResponseModel getDocumentByText(String text, String accessToken);
+    QueryAnalyticsResponseModel getDocumentByText(String text, String accessToken);
 
-    List<ElasticQueryServiceResponseModel> getAllDocuments();
+    List<ElasticQueryResponseModel> getAllDocuments();
 }

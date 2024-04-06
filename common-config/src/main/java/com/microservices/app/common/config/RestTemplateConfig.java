@@ -1,6 +1,7 @@
 package com.microservices.app.common.config;
 
 import com.microservices.app.common.interceptor.CustomClientHttpRequestInterceptor;
+import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.client.BufferingClientHttpRequestFactory;
@@ -15,6 +16,7 @@ import java.util.List;
 public class RestTemplateConfig {
 
     @Bean(name = "appRestTemplate")
+    @LoadBalanced
     public RestTemplate appRestTemplate() {
 
         SimpleClientHttpRequestFactory clientHttpRequestFactory = new SimpleClientHttpRequestFactory();

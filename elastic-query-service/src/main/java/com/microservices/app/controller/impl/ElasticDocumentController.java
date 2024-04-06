@@ -1,9 +1,9 @@
 package com.microservices.app.controller.impl;
 
 import com.microservices.app.controller.ElasticDocumentApi;
-import com.microservices.app.model.ElasticQueryServiceAnalyticsResponseModel;
-import com.microservices.app.model.ElasticQueryServiceRequestModel;
-import com.microservices.app.model.ElasticQueryServiceResponseModel;
+import com.microservices.app.model.ElasticQueryRequestModel;
+import com.microservices.app.model.ElasticQueryResponseModel;
+import com.microservices.app.model.QueryAnalyticsResponseModel;
 import com.microservices.app.service.ElasticQueryService;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotEmpty;
@@ -27,24 +27,24 @@ public class ElasticDocumentController implements ElasticDocumentApi {
     @Value("${server.port}")
     private String port;
 
-    public ResponseEntity<List<ElasticQueryServiceResponseModel>> getAllDocuments() {
-        List<ElasticQueryServiceResponseModel> response = elasticQueryService.getAllDocuments();
+    public ResponseEntity<List<ElasticQueryResponseModel>> getAllDocuments() {
+        List<ElasticQueryResponseModel> response = elasticQueryService.getAllDocuments();
         log.info("Elasticsearch returned {} of documents on port {}", response.size(), port);
         return ResponseEntity.ok(response);
     }
 
-    public ResponseEntity<ElasticQueryServiceResponseModel> getDocumentById(@PathVariable @NotEmpty String id) {
-        ElasticQueryServiceResponseModel elasticQueryServiceResponseModel = elasticQueryService.getDocumentById(id);
+    public ResponseEntity<ElasticQueryResponseModel> getDocumentById(@PathVariable @NotEmpty String id) {
+        ElasticQueryResponseModel elasticQueryResponseModel = elasticQueryService.getDocumentById(id);
         log.debug("Elasticsearch returned document with id {} on port {}", id, port);
-        return ResponseEntity.ok(elasticQueryServiceResponseModel);
+        return ResponseEntity.ok(elasticQueryResponseModel);
     }
 
-    public ResponseEntity<ElasticQueryServiceAnalyticsResponseModel>
-    getDocumentByText(@RequestBody @Valid ElasticQueryServiceRequestModel elasticQueryServiceRequestModel,
+    public ResponseEntity<QueryAnalyticsResponseModel>
+    getDocumentByText(@RequestBody @Valid ElasticQueryRequestModel elasticQueryRequestModel,
                       @RequestHeader(HttpHeaders.AUTHORIZATION) String authorization) {
 
-        ElasticQueryServiceAnalyticsResponseModel response =
-                elasticQueryService.getDocumentByText(elasticQueryServiceRequestModel.getText(),
+        QueryAnalyticsResponseModel response =
+                elasticQueryService.getDocumentByText(elasticQueryRequestModel.getText(),
                         authorization);
         log.info("Elasticsearch returned {} of documents on port {}",
                 response.getData().size(), port);

@@ -1,8 +1,8 @@
 package com.microservices.app.controller;
 
-import com.microservices.app.model.ElasticQueryServiceAnalyticsResponseModel;
-import com.microservices.app.model.ElasticQueryServiceRequestModel;
-import com.microservices.app.model.ElasticQueryServiceResponseModel;
+import com.microservices.app.model.ElasticQueryResponseModel;
+import com.microservices.app.model.QueryAnalyticsResponseModel;
+import com.microservices.app.model.ElasticQueryRequestModel;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -24,40 +24,40 @@ public interface ElasticDocumentApi {
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Successful response.", content = {
                     @Content(mediaType = "application/json",
-                            schema = @Schema(implementation = ElasticQueryServiceResponseModel.class)
+                            schema = @Schema(implementation = ElasticQueryResponseModel.class)
                     )
             }),
             @ApiResponse(responseCode = "400", description = "Not found."),
             @ApiResponse(responseCode = "500", description = "Internal server error.")
     })
     @GetMapping("/")
-    ResponseEntity<List<ElasticQueryServiceResponseModel>> getAllDocuments();
+    ResponseEntity<List<ElasticQueryResponseModel>> getAllDocuments();
 
     @Operation(summary = "Get elastic document by id.")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Successful response.", content = {
                     @Content(mediaType = "application/json",
-                            schema = @Schema(implementation = ElasticQueryServiceResponseModel.class)
+                            schema = @Schema(implementation = ElasticQueryResponseModel.class)
                     )
             }),
             @ApiResponse(responseCode = "400", description = "Not found."),
             @ApiResponse(responseCode = "500", description = "Internal server error.")
     })
     @GetMapping("/{id}")
-    ResponseEntity<ElasticQueryServiceResponseModel> getDocumentById(@PathVariable @NotEmpty String id);
+    ResponseEntity<ElasticQueryResponseModel> getDocumentById(@PathVariable @NotEmpty String id);
 
     @Operation(summary = "Get elastic document by text.")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Successful response.", content = {
                     @Content(mediaType = "application/json",
-                            schema = @Schema(implementation = ElasticQueryServiceAnalyticsResponseModel.class)
+                            schema = @Schema(implementation = QueryAnalyticsResponseModel.class)
                     )
             }),
             @ApiResponse(responseCode = "400", description = "Not found."),
             @ApiResponse(responseCode = "500", description = "Internal server error.")
     })
     @PostMapping("/get-document-by-text")
-    ResponseEntity<ElasticQueryServiceAnalyticsResponseModel>
-    getDocumentByText(@RequestBody @Valid ElasticQueryServiceRequestModel elasticQueryServiceRequestModel,
+    ResponseEntity<QueryAnalyticsResponseModel>
+    getDocumentByText(@RequestBody @Valid ElasticQueryRequestModel elasticQueryRequestModel,
                       String authorization);
 }

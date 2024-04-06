@@ -4,9 +4,9 @@ import com.micorservices.app.model.index.impl.TwitterIndexModel;
 import com.microservices.app.common.service.RestServiceCommon;
 import com.microservices.app.config.ElasticQueryServiceConfigData;
 import com.microservices.app.constant.QueryType;
-import com.microservices.app.model.ElasticQueryServiceAnalyticsResponseModel;
-import com.microservices.app.model.ElasticQueryServiceResponseModel;
-import com.microservices.app.model.ElasticQueryServiceWordCountResponseModel;
+import com.microservices.app.model.QueryAnalyticsResponseModel;
+import com.microservices.app.model.ElasticQueryResponseModel;
+import com.microservices.app.model.QueryWordCountResponseModel;
 import com.microservices.app.service.ElasticQueryClient;
 import com.microservices.app.service.ElasticQueryService;
 import com.microservices.app.transformer.ElasticToResponseModelTransformer;
@@ -28,24 +28,24 @@ public class TwitterElasticQueryService implements ElasticQueryService {
     private final RestServiceCommon restServiceCommon;
 
     @Override
-    public ElasticQueryServiceResponseModel getDocumentById(String id) {
+    public ElasticQueryResponseModel getDocumentById(String id) {
         log.info("Querying elasticsearch by id {}", id);
         return elasticToResponseModelTransformer.getResponseModel(elasticQueryClient.getIndexModelById(id));
     }
 
     @Override
-    public ElasticQueryServiceAnalyticsResponseModel getDocumentByText(String text, String accessToken) {
+    public QueryAnalyticsResponseModel getDocumentByText(String text, String accessToken) {
         log.info("Querying elasticsearch by text {}", text);
-        List<ElasticQueryServiceResponseModel> elasticQueryServiceResponseModels =
+        List<ElasticQueryResponseModel> elasticQueryResponseModels =
                 elasticToResponseModelTransformer.getResponseModels(elasticQueryClient.getIndexModelByText(text));
-        return ElasticQueryServiceAnalyticsResponseModel.builder()
+        return QueryAnalyticsResponseModel.builder()
                 .wordCount(getWordCount(text, accessToken))
-                .data(elasticQueryServiceResponseModels)
+                .data(elasticQueryResponseModels)
                 .build();
     }
 
     @Override
-    public List<ElasticQueryServiceResponseModel> getAllDocuments() {
+    public List<ElasticQueryResponseModel> getAllDocuments() {
         log.info("Querying all documents in elasticsearch");
         return elasticToResponseModelTransformer.getResponseModels(elasticQueryClient.getAllIndexModels());
     }
@@ -60,24 +60,24 @@ public class TwitterElasticQueryService implements ElasticQueryService {
         return 0L;
     }
 
-    private ElasticQueryServiceWordCountResponseModel getFromAnalyticsDatabase(String text, String accessToken) {
+    private QueryWordCountResponseModel getFromAnalyticsDatabase(String text, String accessToken) {
         ElasticQueryServiceConfigData.Query queryFromAnalyticsDatabase =
                 elasticQueryServiceConfigData.getQueryFromAnalyticsDatabase();
         return retrieveResponseModel(text, accessToken, queryFromAnalyticsDatabase);
     }
 
-    private ElasticQueryServiceWordCountResponseModel getFromKafkaStateStore(String text, String accessToken) {
+    private QueryWordCountResponseModel getFromKafkaStateStore(String text, String accessToken) {
         ElasticQueryServiceConfigData.Query queryFromKafkaStateStore =
                 elasticQueryServiceConfigData.getQueryFromKafkaStateStore();
         return retrieveResponseModel(text, accessToken, queryFromKafkaStateStore);
     }
 
-    private ElasticQueryServiceWordCountResponseModel retrieveResponseModel(String text,
-                                                                            String accessToken,
-                                                                            ElasticQueryServiceConfigData.Query query) {
+    private QueryWordCountResponseModel retrieveResponseModel(String text,
+                                                              String accessToken,
+                                                              ElasticQueryServiceConfigData.Query query) {
 
           return restServiceCommon.invokeApi(accessToken, query.getUri(), HttpMethod.GET, null, null,
-                ElasticQueryServiceWordCountResponseModel.class, text);
+                QueryWordCountResponseModel.class, text);
 
     }
 }

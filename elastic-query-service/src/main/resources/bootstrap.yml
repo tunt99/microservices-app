@@ -14,3 +14,8 @@ jasypt:
     password: Demo_Pwd!2024
     algorithm: PBEWithMD5AndDES
     iv-generator-classname: org.jasypt.iv.NoIvGenerator
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://discovery-service-1:8761/eureka/

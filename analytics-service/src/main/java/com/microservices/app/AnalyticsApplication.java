@@ -3,8 +3,10 @@ package com.microservices.app;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.kafka.KafkaAutoConfiguration;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
+@EnableDiscoveryClient
 @EnableJpaRepositories(value = "com.microservices.app.repository")
 @SpringBootApplication(scanBasePackages = "com.microservices.app",
         exclude = KafkaAutoConfiguration.class)

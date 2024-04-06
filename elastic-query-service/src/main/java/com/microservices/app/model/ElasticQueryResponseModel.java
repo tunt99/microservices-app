@@ -5,13 +5,15 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
+import java.time.LocalDateTime;
 
 @Data
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
-public class ElasticQueryServiceAnalyticsResponseModel {
-    private Long wordCount;
-    private List<ElasticQueryServiceResponseModel> data;
+public class ElasticQueryResponseModel {
+    private String id;
+    private Long userId;
+    private String text;
+    private LocalDateTime createdAt;
 }

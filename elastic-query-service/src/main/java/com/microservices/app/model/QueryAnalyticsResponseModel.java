@@ -5,11 +5,13 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class ElasticQueryServiceWordCountResponseModel {
-    private String word;
+public class QueryAnalyticsResponseModel {
     private Long wordCount;
+    private List<ElasticQueryResponseModel> data;
 }

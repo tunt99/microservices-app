@@ -6,7 +6,6 @@ import io.netty.handler.timeout.WriteTimeoutHandler;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.client.loadbalancer.LoadBalanced;
-import org.springframework.cloud.loadbalancer.annotation.LoadBalancerClient;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpHeaders;
@@ -16,13 +15,11 @@ import org.springframework.security.oauth2.client.web.OAuth2AuthorizedClientRepo
 import org.springframework.security.oauth2.client.web.reactive.function.client.ServletOAuth2AuthorizedClientExchangeFilterFunction;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.netty.http.client.HttpClient;
-import reactor.netty.tcp.TcpClient;
 
 import java.util.concurrent.TimeUnit;
 
 @Configuration
 @RequiredArgsConstructor
-@LoadBalancerClient(name = "elastic-query-service", configuration = InstanceListSupplierConfig.class)
 public class WebClientConfig {
 
     private final ElasticQueryWebClientConfigData elasticQueryWebClientConfigData;
@@ -53,19 +50,6 @@ public class WebClientConfig {
                         clientCodecConfigurer
                                 .defaultCodecs()
                                 .maxInMemorySize(elasticQueryWebClientConfigData.getWebClient().getMaxInMemorySize()));
-    }
-
-    private TcpClient getTcpClient() {
-        return TcpClient.create()
-                .option(ChannelOption.CONNECT_TIMEOUT_MILLIS, elasticQueryWebClientConfigData.getWebClient().getConnectTimeoutMs())
-                .doOnConnected(connection -> {
-                    connection.addHandlerLast(
-                            new ReadTimeoutHandler(elasticQueryWebClientConfigData.getWebClient().getReadTimeoutMs(),
-                                    TimeUnit.MILLISECONDS));
-                    connection.addHandlerLast(
-                            new WriteTimeoutHandler(elasticQueryWebClientConfigData.getWebClient().getWriteTimeoutMs(),
-                                    TimeUnit.MILLISECONDS));
-                });
     }
 
     private HttpClient getHttpClient() {

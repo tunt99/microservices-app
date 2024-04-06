@@ -2,7 +2,7 @@ package com.microservices.app.transformer;
 
 import com.micorservices.app.model.index.impl.TwitterIndexModel;
 import com.microservices.app.common.config.UtilConfig;
-import com.microservices.app.model.ElasticQueryServiceResponseModel;
+import com.microservices.app.model.ElasticQueryResponseModel;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -15,11 +15,11 @@ public class ElasticToResponseModelTransformer {
 
     private final UtilConfig utilConfig;
 
-    public ElasticQueryServiceResponseModel getResponseModel(TwitterIndexModel twitterIndexModel) {
-        return utilConfig.objectMapper().convertValue(twitterIndexModel, ElasticQueryServiceResponseModel.class);
+    public ElasticQueryResponseModel getResponseModel(TwitterIndexModel twitterIndexModel) {
+        return utilConfig.objectMapper().convertValue(twitterIndexModel, ElasticQueryResponseModel.class);
     }
 
-    public List<ElasticQueryServiceResponseModel> getResponseModels(List<TwitterIndexModel> twitterIndexModels) {
+    public List<ElasticQueryResponseModel> getResponseModels(List<TwitterIndexModel> twitterIndexModels) {
         return twitterIndexModels.stream().map(this::getResponseModel).collect(Collectors.toList());
     }
 }
