@@ -20,6 +20,7 @@
 		<module>analytics-service</module>
         <module>auth-service</module>
         <module>discovery-service</module>
+        <module>gateway-service</module>
     </modules>
 	<parent>
 		<groupId>org.springframework.boot</groupId>
@@ -60,6 +61,7 @@
 		<postgresql.version>42.7.1</postgresql.version>
 		<kafka-streams.version>3.6.1</kafka-streams.version>
 		<kafka-streams-avro-serde.version>7.5.3</kafka-streams-avro-serde.version>
+		<spring-cloud-starter-circuitbreaker-reactor-resilience4j.version>3.0.1</spring-cloud-starter-circuitbreaker-reactor-resilience4j.version>
 
 	</properties>
 
@@ -329,6 +331,24 @@
 				<groupId>org.springdoc</groupId>
 				<artifactId>springdoc-openapi-ui</artifactId>
 				<version>${springdoc-openapi-ui.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.springframework.cloud</groupId>
+				<artifactId>spring-cloud-starter-circuitbreaker-reactor-resilience4j</artifactId>
+				<version>${spring-cloud-starter-circuitbreaker-reactor-resilience4j.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-starter-data-redis-reactive</artifactId>
+				<version>${spring-boot.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.springframework.cloud</groupId>
+				<artifactId>spring-cloud-starter-gateway</artifactId>
+				<version>${spring-cloud.version}</version>
 			</dependency>
 
 			<dependency>
