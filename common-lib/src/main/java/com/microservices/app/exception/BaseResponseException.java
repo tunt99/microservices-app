@@ -1,4 +1,4 @@
-package com.microservices.app.common.exception;
+package com.microservices.app.exception;
 
 public class BaseResponseException extends RuntimeException {
 

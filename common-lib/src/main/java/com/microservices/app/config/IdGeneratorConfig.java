@@ -1,4 +1,4 @@
-package com.microservices.app.common.config;
+package com.microservices.app.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

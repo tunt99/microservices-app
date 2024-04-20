@@ -1,7 +1,7 @@
 package com.microservices.app.runner.impl;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.microservices.app.common.config.UtilConfig;
+import com.microservices.app.config.UtilConfig;
 import com.microservices.app.config.KafkaStreamsConfigData;
 import com.microservices.app.kafka.avro.model.TwitterAnalyticsCustomModel;
 import com.microservices.app.runner.StreamsRunner;

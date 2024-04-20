@@ -1,7 +1,7 @@
-package com.microservices.app.common.service.impl;
+package com.microservices.app.service.impl;
 
-import com.microservices.app.common.exception.BaseResponseException;
-import com.microservices.app.common.service.RestServiceCommon;
+import com.microservices.app.exception.BaseResponseException;
+import com.microservices.app.service.RestServiceCommon;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.*;

@@ -9,7 +9,7 @@
 		<module>kafka/kafka-model</module>
 		<module>kafka/kafka-admin</module>
 		<module>kafka/kafka-producer</module>
-		<module>common-config</module>
+		<module>common-lib</module>
         <module>config-server</module>
 		<module>kafka/kafka-consumer</module>
 		<module>kafka-to-elastic-service</module>
@@ -86,7 +86,7 @@
 			</dependency>
 			<dependency>
 				<groupId>com.microservices.app</groupId>
-				<artifactId>common-config</artifactId>
+				<artifactId>common-lib</artifactId>
 				<version>${project.version}</version>
 			</dependency>
 			<dependency>

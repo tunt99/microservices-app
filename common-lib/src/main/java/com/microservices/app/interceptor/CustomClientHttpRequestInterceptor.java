@@ -1,4 +1,4 @@
-package com.microservices.app.common.interceptor;
+package com.microservices.app.interceptor;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpRequest;

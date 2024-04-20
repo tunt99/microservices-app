@@ -1,6 +1,6 @@
-package com.microservices.app.common.util;
+package com.microservices.app.util;
 
-import com.microservices.app.common.config.UtilConfig;
+import com.microservices.app.config.UtilConfig;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;

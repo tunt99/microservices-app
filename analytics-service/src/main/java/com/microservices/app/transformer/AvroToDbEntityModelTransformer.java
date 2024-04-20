@@ -1,6 +1,6 @@
 package com.microservices.app.transformer;
 
-import com.microservices.app.common.config.UtilConfig;
+import com.microservices.app.config.UtilConfig;
 import com.microservices.app.entity.AnalyticsEntity;
 import com.microservices.app.kafka.avro.model.TwitterAnalyticsAvroModel;
 import com.microservices.app.kafka.avro.model.TwitterAnalyticsCustomModel;

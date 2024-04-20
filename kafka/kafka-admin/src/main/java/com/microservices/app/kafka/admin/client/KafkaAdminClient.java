@@ -2,7 +2,7 @@ package com.microservices.app.kafka.admin.client;
 
 import com.microservices.app.config.KafkaConfigData;
 import com.microservices.app.config.RetryConfigData;
-import com.microservices.app.kafka.admin.exception.KafkaClientException;
+import com.microservices.app.exception.BaseResponseException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.admin.AdminClient;
@@ -44,7 +44,7 @@ public class KafkaAdminClient {
             createTopicsResult = retryTemplate.execute(this::doCreateTopics);
             log.info("Create topic result {}", createTopicsResult.values().values());
         } catch (Throwable t) {
-            throw new KafkaClientException("Reached max number of retry for creating kafka topic(s)!", t);
+            throw new BaseResponseException("Reached max number of retry for creating kafka topic(s)!", t);
         }
         checkTopicsCreated();
     }
@@ -95,13 +95,13 @@ public class KafkaAdminClient {
         try {
             Thread.sleep(sleepTimeMs);
         } catch (InterruptedException e) {
-            throw new KafkaClientException("Error while sleeping for waiting new created topics!!");
+            throw new BaseResponseException("Error while sleeping for waiting new created topics!!");
         }
     }
 
     private void checkMaxRetry(int retry, Integer maxRetry) {
         if (retry > maxRetry) {
-            throw new KafkaClientException("Reached max number of retry for reading kafka topic(s)!");
+            throw new BaseResponseException("Reached max number of retry for reading kafka topic(s)!");
         }
     }
 
@@ -128,7 +128,7 @@ public class KafkaAdminClient {
         try {
             topics = retryTemplate.execute(this::doGetTopics);
         } catch (Throwable t) {
-            throw new KafkaClientException("Reached max number of retry for reading kafka topic(s)!", t);
+            throw new BaseResponseException("Reached max number of retry for reading kafka topic(s)!", t);
         }
         return topics;
     }

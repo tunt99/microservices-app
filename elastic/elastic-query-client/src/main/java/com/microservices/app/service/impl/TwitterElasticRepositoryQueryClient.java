@@ -1,8 +1,8 @@
 package com.microservices.app.service.impl;
 
 import com.micorservices.app.model.index.impl.TwitterIndexModel;
-import com.microservices.app.common.util.CollectionsUtil;
-import com.microservices.app.exception.ElasticQueryClientException;
+import com.microservices.app.exception.BaseResponseException;
+import com.microservices.app.util.CollectionsUtil;
 import com.microservices.app.repository.TwitterElasticsearchQueryRepository;
 import com.microservices.app.service.ElasticQueryClient;
 import lombok.RequiredArgsConstructor;
@@ -26,7 +26,7 @@ public class TwitterElasticRepositoryQueryClient implements ElasticQueryClient<T
         Optional<TwitterIndexModel> searchResult = twitterElasticsearchQueryRepository.findById(id);
         log.info("Document with id {} retrieved successfully",
                 searchResult.orElseThrow(() ->
-                        new ElasticQueryClientException("No document found at elasticsearch with id " + id)).getId());
+                        new BaseResponseException("No document found at elasticsearch with id " + id)).getId());
         return searchResult.get();
     }
 

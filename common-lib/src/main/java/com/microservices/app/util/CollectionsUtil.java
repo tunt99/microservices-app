@@ -1,4 +1,4 @@
-package com.microservices.app.common.util;
+package com.microservices.app.util;
 
 import java.util.ArrayList;
 import java.util.List;

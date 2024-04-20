@@ -1,7 +1,7 @@
 package com.microservices.app.service.impl;
 
 import com.microservices.app.config.ElasticQueryWebClientConfigData;
-import com.microservices.app.exception.ElasticQueryWebClientException;
+import com.microservices.app.exception.BaseResponseException;
 import com.microservices.app.model.ElasticQueryWebClientRequestModel;
 import com.microservices.app.model.ElasticQueryWebClientResponseModel;
 import com.microservices.app.service.ElasticQueryWebClient;
@@ -56,7 +56,7 @@ public class TwitterElasticQueryWebClient implements ElasticQueryWebClient {
                         clientResponse -> Mono.just(new BadCredentialsException("Not authenticated!")))
                 .onStatus(
                         HttpStatusCode::is4xxClientError,
-                        cr -> Mono.just(new ElasticQueryWebClientException(HttpStatus.BAD_REQUEST.getReasonPhrase())))
+                        cr -> Mono.just(new BaseResponseException(HttpStatus.BAD_REQUEST.getReasonPhrase())))
                 .onStatus(
                         HttpStatusCode::is5xxServerError,
                         cr -> Mono.just(new Exception(HttpStatus.INTERNAL_SERVER_ERROR.getReasonPhrase())));

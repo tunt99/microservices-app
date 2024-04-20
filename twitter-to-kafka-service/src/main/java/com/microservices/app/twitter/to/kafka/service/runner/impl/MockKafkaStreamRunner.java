@@ -1,7 +1,7 @@
 package com.microservices.app.twitter.to.kafka.service.runner.impl;
 
 import com.microservices.app.config.TwitterToKafkaServiceConfigData;
-import com.microservices.app.twitter.to.kafka.service.exception.TwitterToKafkaServiceException;
+import com.microservices.app.exception.BaseResponseException;
 import com.microservices.app.twitter.to.kafka.service.listener.TwitterKafkaListener;
 import com.microservices.app.twitter.to.kafka.service.runner.StreamRunner;
 import lombok.RequiredArgsConstructor;
@@ -93,7 +93,7 @@ public class MockKafkaStreamRunner implements StreamRunner {
         try {
             Thread.sleep(sleepTimeMs);
         } catch (InterruptedException e) {
-            throw new TwitterToKafkaServiceException("Error while sleeping for waiting new status to create!!");
+            throw new BaseResponseException("Error while sleeping for waiting new status to create!!");
         }
     }
 

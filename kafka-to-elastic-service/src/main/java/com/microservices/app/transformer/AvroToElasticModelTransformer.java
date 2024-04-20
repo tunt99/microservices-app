@@ -1,7 +1,7 @@
 package com.microservices.app.transformer;
 
 import com.micorservices.app.model.index.impl.TwitterIndexModel;
-import com.microservices.app.common.config.UtilConfig;
+import com.microservices.app.config.UtilConfig;
 import com.microservices.app.kafka.avro.model.TwitterCustomModel;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

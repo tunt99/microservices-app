@@ -28,7 +28,7 @@ public class UserJwtConverter implements Converter<Jwt, AbstractAuthenticationTo
     }
 
     @Override
-    public AbstractAuthenticationToken convert(Jwt jwt) {
+    public AbstractAuthenticationToken convert( Jwt jwt) {
         Collection<GrantedAuthority> authoritiesFromJwt = getAuthoritiesFromJwt(jwt);
         return Optional.ofNullable(
                 authUserDetailsService.loadUserByUsername(jwt.getClaimAsString(USERNAME_CLAIM)))

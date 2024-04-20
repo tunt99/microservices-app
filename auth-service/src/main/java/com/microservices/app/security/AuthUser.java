@@ -3,6 +3,7 @@ package com.microservices.app.security;
 import com.microservices.app.constant.Constants;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -14,11 +15,8 @@ public class AuthUser implements UserDetails {
 
     private String username;
 
+    @Setter
     private Collection<? extends GrantedAuthority> authorities;
-
-    public void setAuthorities(Collection<? extends GrantedAuthority> authorities) {
-        this.authorities = authorities;
-    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

@@ -22,7 +22,7 @@
         </dependency>
         <dependency>
             <groupId>com.microservices.app</groupId>
-            <artifactId>common-config</artifactId>
+            <artifactId>common-lib</artifactId>
         </dependency>
     </dependencies>
 

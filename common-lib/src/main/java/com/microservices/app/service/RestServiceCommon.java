@@ -1,4 +1,4 @@
-package com.microservices.app.common.service;
+package com.microservices.app.service;
 
 import org.springframework.http.HttpMethod;
 

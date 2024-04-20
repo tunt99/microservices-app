@@ -1,7 +1,7 @@
 package com.microservices.app.transformer;
 
 import com.micorservices.app.model.index.impl.TwitterIndexModel;
-import com.microservices.app.common.config.UtilConfig;
+import com.microservices.app.config.UtilConfig;
 import com.microservices.app.model.ElasticQueryResponseModel;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;

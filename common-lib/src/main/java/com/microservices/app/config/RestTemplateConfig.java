@@ -1,6 +1,6 @@
-package com.microservices.app.common.config;
+package com.microservices.app.config;
 
-import com.microservices.app.common.interceptor.CustomClientHttpRequestInterceptor;
+import com.microservices.app.interceptor.CustomClientHttpRequestInterceptor;
 import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

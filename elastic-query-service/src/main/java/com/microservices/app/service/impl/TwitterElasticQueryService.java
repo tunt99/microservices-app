@@ -1,7 +1,7 @@
 package com.microservices.app.service.impl;
 
 import com.micorservices.app.model.index.impl.TwitterIndexModel;
-import com.microservices.app.common.service.RestServiceCommon;
+import com.microservices.app.service.RestServiceCommon;
 import com.microservices.app.config.ElasticQueryServiceConfigData;
 import com.microservices.app.constant.QueryType;
 import com.microservices.app.model.QueryAnalyticsResponseModel;
