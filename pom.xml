@@ -62,6 +62,7 @@
 		<kafka-streams.version>3.6.1</kafka-streams.version>
 		<kafka-streams-avro-serde.version>7.5.3</kafka-streams-avro-serde.version>
 		<spring-cloud-starter-circuitbreaker-reactor-resilience4j.version>3.0.1</spring-cloud-starter-circuitbreaker-reactor-resilience4j.version>
+		<logstash-logback-encoder.version>7.4</logstash-logback-encoder.version>
 
 	</properties>
 
@@ -71,6 +72,13 @@
 			<url>https://packages.confluent.io/maven/</url>
 		</repository>
 	</repositories>
+
+	<dependencies>
+		<dependency>
+			<groupId>net.logstash.logback</groupId>
+			<artifactId>logstash-logback-encoder</artifactId>
+		</dependency>
+	</dependencies>
 
 	<dependencyManagement>
 		<dependencies>
@@ -349,6 +357,12 @@
 				<groupId>org.springframework.cloud</groupId>
 				<artifactId>spring-cloud-starter-gateway</artifactId>
 				<version>${spring-cloud.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>net.logstash.logback</groupId>
+				<artifactId>logstash-logback-encoder</artifactId>
+				<version>${logstash-logback-encoder.version}</version>
 			</dependency>
 
 			<dependency>

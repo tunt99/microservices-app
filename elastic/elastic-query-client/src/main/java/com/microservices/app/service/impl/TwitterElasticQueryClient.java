@@ -3,7 +3,7 @@ package com.microservices.app.service.impl;
 import com.micorservices.app.model.index.impl.TwitterIndexModel;
 import com.microservices.app.config.ElasticConfigData;
 import com.microservices.app.config.ElasticQueryConfigData;
-import com.microservices.app.exception.ElasticQueryClientException;
+import com.microservices.app.exception.BaseResponseException;
 import com.microservices.app.service.ElasticQueryClient;
 import com.microservices.app.util.ElasticQueryUtil;
 import lombok.RequiredArgsConstructor;
@@ -40,7 +40,7 @@ public class TwitterElasticQueryClient implements ElasticQueryClient<TwitterInde
                 IndexCoordinates.of(elasticConfigData.getIndexName()));
         if (searchResult == null) {
             log.error("No document found at elasticsearch with id {}", id);
-            throw new ElasticQueryClientException("No document found at elasticsearch with id " + id);
+            throw new BaseResponseException("No document found at elasticsearch with id " + id);
         }
         log.info("Document with id {} retrieved successfully", searchResult.getId());
         return searchResult.getContent();

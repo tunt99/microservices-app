@@ -1,9 +1,11 @@
 package com.microservices.app.service.impl;
 
+import com.microservices.app.constant.Constants;
 import com.microservices.app.exception.BaseResponseException;
 import com.microservices.app.service.RestServiceCommon;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.slf4j.MDC;
 import org.springframework.http.*;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.ResourceAccessException;
@@ -22,6 +24,7 @@ public class RestServiceCommonImpl implements RestServiceCommon {
                            Object body, Class<T> targetResponse, Object... uriVariableValues) {
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.set(HttpHeaders.AUTHORIZATION, authorization);
+        httpHeaders.set(Constants.CORRELATION_ID_HEADER, MDC.get(Constants.CORRELATION_ID_KEY));
 
         HttpEntity<Object> entity = new HttpEntity<>(body, httpHeaders);
 

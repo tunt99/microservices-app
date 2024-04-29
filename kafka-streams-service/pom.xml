@@ -23,6 +23,10 @@
         </dependency>
         <dependency>
             <groupId>com.microservices.app</groupId>
+            <artifactId>common-lib</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.microservices.app</groupId>
             <artifactId>kafka-model</artifactId>
         </dependency>
         <dependency>
